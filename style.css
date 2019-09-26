@@ -1,0 +1,25 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  position: relative;
+  height: 320px;
+  width: 400px;
+  margin: 20px auto 0;
+  border: 1px solid black;
+}
+
+.cell {
+  height: 32px;
+  width: 40px;
+  position: absolute;
+  border: solid black 1px;
+  background-color: white;
+}
+
+.cell.active {
+  background-color: black;
+}
