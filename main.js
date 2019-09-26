@@ -4,7 +4,7 @@ const cellHeight = 32;
 let positionX = "";
 let positionY = "";
 let ball = {
-  x: 1,
+  x: 3,
   y: 4
 }
 const ballV = {
@@ -13,6 +13,10 @@ const ballV = {
 }
 turnY = true;
 turnX = true;
+const paddlePlayer1 = {
+  x: 0,
+  y: [3, 4, 5]
+}
 
 const draw = () => {
   for (let x = 0; x < 10; x++) {
@@ -34,31 +38,61 @@ const draw = () => {
       cell.classList.toggle('active');
     };
 
+    if (positionX === paddlePlayer1.x.toString() && positionY === paddlePlayer1.y[0].toString() || positionX === paddlePlayer1.x.toString() && positionY === paddlePlayer1.y[1].toString() || positionX === paddlePlayer1.x.toString() && positionY === paddlePlayer1.y[2].toString()) {
+      cell.classList.toggle('active')
+    }
+
   })
+  const tick = () => {
+    if (ball.x === 9) {
+      turnX = !turnX
+    } else if (ball.x === 0) {
+      turnX = !turnX
+    }
+    if (turnX) {
+      ball.x += ballV.x
+    } else if (!turnX) {
+      ball.x -= ballV.x
+    };
+    if (ball.y === 9) {
+      turnY = !turnY;
+    } else if (ball.y === 0) {
+      turnY = !turnY;
+    }
+    if (turnY) {
+      ball.y += ballV.y
+    } else if (!turnY) {
+      ball.y -= ballV.y
+    }
+  }
+
 
 }
 draw()
-const tick = () => {
-  if (ball.x === 9) {
-    turnX = !turnX
-  } else if (ball.x === 0) {
-    turnX = !turnX
+
+// setInterval(tick, 500)
+// setInterval(draw, 500)
+
+const move = (e) => {
+  // 87 - "w"
+  // 83 - "s"
+  // 38 - "strzalka w gore"
+  // 40 - "strzalka w dol"
+  if (e.keyCode === 83) {
+    if (paddlePlayer1.y[2] === 9) return;
+    let yFirstPaddlePlayer = paddlePlayer1.y.shift();
+    yFirstPaddlePlayer += 3;
+    paddlePlayer1.y.push(yFirstPaddlePlayer)
+    console.log(paddlePlayer1.y)
+
   }
-  if (turnX) {
-    ball.x += ballV.x
-  } else if (!turnX) {
-    ball.x -= ballV.x
-  };
-  if (ball.y === 9) {
-    turnY = !turnY;
-  } else if (ball.y === 0) {
-    turnY = !turnY;
+  if (e.keyCode === 87) {
+    if (paddlePlayer1.y[0] === 0) return;
+    let yLastPaddlePlayer = paddlePlayer1.y.pop();
+    yLastPaddlePlayer -= 3;
+    paddlePlayer1.y.unshift(yLastPaddlePlayer)
+    console.log(paddlePlayer1.y)
   }
-  if (turnY) {
-    ball.y += ballV.y
-  } else if (!turnY) {
-    ball.y -= ballV.y
-  }
+  draw()
 }
-setInterval(tick, 500)
-setInterval(draw, 500)
+window.addEventListener('keydown', move)
