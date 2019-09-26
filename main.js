@@ -17,6 +17,7 @@ const paddlePlayer1 = {
   x: 0,
   y: [3, 4, 5]
 }
+let tick = "";
 
 const draw = () => {
   for (let x = 0; x < 10; x++) {
@@ -43,7 +44,7 @@ const draw = () => {
     }
 
   })
-  const tick = () => {
+  tick = () => {
     if (ball.x === 9) {
       turnX = !turnX
     } else if (ball.x === 0) {
@@ -70,8 +71,8 @@ const draw = () => {
 }
 draw()
 
-// setInterval(tick, 500)
-// setInterval(draw, 500)
+setInterval(tick, 500)
+setInterval(draw, 500)
 
 const move = (e) => {
   // 87 - "w"
