@@ -39,9 +39,12 @@ const draw = () => {
       cell.classList.toggle('active');
     };
 
-    if (positionX === paddlePlayer1.x.toString() && positionY === paddlePlayer1.y[0].toString() || positionX === paddlePlayer1.x.toString() && positionY === paddlePlayer1.y[1].toString() || positionX === paddlePlayer1.x.toString() && positionY === paddlePlayer1.y[2].toString()) {
-      cell.classList.toggle('active')
-    }
+    Array.from(paddlePlayer1.y).forEach((item) => {
+      if (item.toString() === positionY && paddlePlayer1.x.toString() === positionX) {
+        cell.classList.toggle('active')
+        console.log(item, positionX, positionY)
+      }
+    })
 
   })
   tick = () => {
@@ -71,8 +74,8 @@ const draw = () => {
 }
 draw()
 
-setInterval(tick, 500)
-setInterval(draw, 500)
+// setInterval(tick, 500)
+// setInterval(draw, 500)
 
 const move = (e) => {
   // 87 - "w"
