@@ -17,7 +17,27 @@ const paddlePlayer1 = {
   x: 0,
   y: [3, 4, 5]
 }
+const paddlePlayer2 = {
+  x: 9,
+  y: [4, 5, 6]
+}
 let tick = "";
+
+const ballMove = () => {
+
+  if (turnY) {
+    ball.y += ballV.y
+  } else if (!turnY) {
+    ball.y -= ballV.y
+  }
+  if (turnX) {
+    ball.x += ballV.x
+  } else if (!turnX) {
+    ball.x -= ballV.x
+  };
+
+
+}
 
 const draw = () => {
   for (let x = 0; x < 10; x++) {
@@ -42,40 +62,58 @@ const draw = () => {
     Array.from(paddlePlayer1.y).forEach((item) => {
       if (item.toString() === positionY && paddlePlayer1.x.toString() === positionX) {
         cell.classList.toggle('active')
-        console.log(item, positionX, positionY)
+
+      }
+    })
+    Array.from(paddlePlayer2.y).forEach((item) => {
+      if (item.toString() === positionY && paddlePlayer2.x.toString() === positionX) {
+        cell.classList.toggle('active')
       }
     })
 
   })
   tick = () => {
-    if (ball.x === 9) {
-      turnX = !turnX
-    } else if (ball.x === 0) {
-      turnX = !turnX
-    }
-    if (turnX) {
-      ball.x += ballV.x
-    } else if (!turnX) {
-      ball.x -= ballV.x
-    };
-    if (ball.y === 9) {
+    Array.from(paddlePlayer1.y).forEach((item) => {
+      if (item === ball.y && paddlePlayer1.x === ball.x) {
+        turnX = !turnX;
+      }
+    })
+    Array.from(paddlePlayer2.y).forEach((item) => {
+      if (item === ball.y && paddlePlayer2.x === ball.x) {
+        turnX = !turnX;
+      }
+    })
+
+    // if (ball.x === 9) {
+    //   turnX = !turnX
+    // }
+    //  else if (ball.x === 1) {
+    //   turnX = !turnX
+    // }
+
+    if (ball.y === 8) {
       turnY = !turnY;
     } else if (ball.y === 0) {
       turnY = !turnY;
     }
-    if (turnY) {
-      ball.y += ballV.y
-    } else if (!turnY) {
-      ball.y -= ballV.y
-    }
+    console.log(ball.x)
+    console.log(ball.y)
   }
 
 
 }
+
+
+
+
 draw()
 
-// setInterval(tick, 500)
-// setInterval(draw, 500)
+
+setInterval(tick, 500)
+setInterval(draw, 500)
+setInterval(ballMove, 500)
+
+
 
 const move = (e) => {
   // 87 - "w"
@@ -87,7 +125,7 @@ const move = (e) => {
     let yFirstPaddlePlayer = paddlePlayer1.y.shift();
     yFirstPaddlePlayer += 3;
     paddlePlayer1.y.push(yFirstPaddlePlayer)
-    console.log(paddlePlayer1.y)
+    // console.log(paddlePlayer1.y)
 
   }
   if (e.keyCode === 87) {
@@ -95,8 +133,27 @@ const move = (e) => {
     let yLastPaddlePlayer = paddlePlayer1.y.pop();
     yLastPaddlePlayer -= 3;
     paddlePlayer1.y.unshift(yLastPaddlePlayer)
-    console.log(paddlePlayer1.y)
+    // console.log(paddlePlayer1.y)
   }
+  if (e.keyCode === 38) {
+    if (paddlePlayer2.y[0] === 0) return;
+    let yLastPaddlePlayer = paddlePlayer2.y.pop();
+    yLastPaddlePlayer -= 3;
+    paddlePlayer2.y.unshift(yLastPaddlePlayer)
+    // console.log(paddlePlayer1.y)
+  }
+  if (e.keyCode === 40) {
+    if (paddlePlayer2.y[2] === 9) return;
+    let yFirstPaddlePlayer = paddlePlayer2.y.shift();
+    yFirstPaddlePlayer += 3;
+    paddlePlayer2.y.push(yFirstPaddlePlayer)
+    // console.log(paddlePlayer1.y)
+
+  }
+
   draw()
 }
+
+
+
 window.addEventListener('keydown', move)
