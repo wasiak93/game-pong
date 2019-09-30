@@ -24,7 +24,11 @@ const paddlePlayer2 = {
 let tick = "";
 
 const ballMove = () => {
-
+  if (ball.x < paddlePlayer1.x - 1) {
+    alert('wygrał gracz 1')
+  } else if (ball.x > 9) {
+    alert('wygrał gracz numer 2')
+  }
   if (turnY) {
     ball.y += ballV.y
   } else if (!turnY) {
