@@ -1,11 +1,12 @@
+const start = document.querySelector('.start');
 const board = document.querySelector('.board');
 const cellWidth = 40;
 const cellHeight = 32;
 let positionX = "";
 let positionY = "";
 let ball = {
-  x: 3,
-  y: 4
+  x: '',
+  y: ''
 }
 const ballV = {
   x: 1,
@@ -22,6 +23,11 @@ const paddlePlayer2 = {
   y: [4, 5, 6]
 }
 let tick = "";
+let indexTick = "";
+let indexDraw = "";
+let indexBallMove = "";
+const time = 500;
+
 
 const ballMove = () => {
   if (turnY) {
@@ -34,10 +40,8 @@ const ballMove = () => {
   } else if (!turnX) {
     ball.x -= ballV.x
   };
-
-
-
 }
+
 
 const draw = () => {
   if (10 > ball.x > -1) {
@@ -102,20 +106,27 @@ const draw = () => {
     clearInterval(indexBallMove);
     clearInterval(indexDraw);
     clearInterval(indexTick);
+
   } else if (ball.x > 10) {
     alert('wygrał gracz numer 1');
     clearInterval(indexBallMove);
     clearInterval(indexDraw);
     clearInterval(indexTick);
+
   }
 }
 
-draw()
 
-const indexTick = setInterval(tick, 500);
-const indexDraw = setInterval(draw, 500);
-const indexBallMove = setInterval(ballMove, 500);
 
+const startInterval = () => {
+  indexTick = setInterval(tick, time);
+  indexDraw = setInterval(draw, time);
+  indexBallMove = setInterval(ballMove, time);
+  ball = {
+    x: 4,
+    y: 5
+  }
+}
 
 
 
@@ -157,5 +168,6 @@ const move = (e) => {
 }
 
 
-
+draw()
 window.addEventListener('keydown', move)
+start.addEventListener('click', startInterval)
