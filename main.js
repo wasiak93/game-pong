@@ -1,4 +1,4 @@
-const board = document.querySelector('.container');
+const board = document.querySelector('.board');
 const cellWidth = 40;
 const cellHeight = 32;
 let positionX = "";
@@ -61,13 +61,13 @@ const draw = () => {
 
       };
 
-      Array.from(paddlePlayer1.y).forEach((item) => {
+      [...paddlePlayer1.y].forEach((item) => {
         if (item.toString() === positionY && paddlePlayer1.x.toString() === positionX) {
           cell.classList.toggle('paddle')
 
         }
-      })
-      Array.from(paddlePlayer2.y).forEach((item) => {
+      });
+      [...paddlePlayer2.y].forEach((item) => {
         if (item.toString() === positionY && paddlePlayer2.x.toString() === positionX) {
           cell.classList.toggle('paddle')
 
@@ -76,12 +76,12 @@ const draw = () => {
 
     })
     tick = () => {
-      Array.from(paddlePlayer1.y).forEach((item) => {
+      [...paddlePlayer1.y].forEach((item) => {
         if (item === ball.y && paddlePlayer1.x + 1 === ball.x) {
           turnX = !turnX;
         }
-      })
-      Array.from(paddlePlayer2.y).forEach((item) => {
+      });
+      [...paddlePlayer2.y].forEach((item) => {
         if (item === ball.y && paddlePlayer2.x - 1 === ball.x) {
           turnX = !turnX;
         }
