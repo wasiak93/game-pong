@@ -28,6 +28,15 @@ let indexDraw = "";
 let indexBallMove = "";
 const time = 500;
 
+let numberWinOne = 0;
+let numberWinTwo = 0;
+const spanWinOne = document.
+querySelector('.winOne');
+const spanWinTwo = document.
+querySelector('.winTwo');
+
+
+
 
 const ballMove = () => {
   if (turnY) {
@@ -102,12 +111,16 @@ const draw = () => {
   }
 
   if (ball.x < paddlePlayer1.x - 1) {
+    numberWinTwo++;
+    spanWinTwo.textContent = numberWinTwo;
     alert('wygrał gracz 2');
     clearInterval(indexBallMove);
     clearInterval(indexDraw);
     clearInterval(indexTick);
 
   } else if (ball.x > 10) {
+    numberWinOne++;
+    spanWinOne.textContent = numberWinOne;
     alert('wygrał gracz numer 1');
     clearInterval(indexBallMove);
     clearInterval(indexDraw);
