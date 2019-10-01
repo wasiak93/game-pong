@@ -10,10 +10,20 @@ body {
   position: relative;
 }
 
+.menu {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  height: 200px;
+  width: 150px;
+  border: pink solid 1px;
+}
+
 .start {
   position: absolute;
-  top: 50px;
-  left: 20px;
+  top: 5px;
+  left: 50%;
+  transform: translateX(-50%);
   font-family: arial;
   text-transform: uppercase;
   font-size: 22px;
@@ -21,13 +31,27 @@ body {
   background-color: grey;
   color: white;
   border: solid black 2px;
+
+}
+
+.score {
+  position: absolute;
+  top: 70px;
+  left: 5px;
+  text-align: center;
+}
+
+p {
+  margin: 10px;
+  text-transform: uppercase;
 }
 
 .board {
-  position: relative;
+  position: absolute;
+  top: 10px;
+  left: 200px;
   height: 320px;
   width: 400px;
-  margin: 20px auto 0;
   border: 1px solid black;
 }
 
