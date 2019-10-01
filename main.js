@@ -24,11 +24,6 @@ const paddlePlayer2 = {
 let tick = "";
 
 const ballMove = () => {
-  // if (ball.x < paddlePlayer1.x - 1) {
-  //   alert('wygrał gracz 1')
-  // } else if (ball.x > 9) {
-  //   alert('wygrał gracz numer 2')
-  // }
   if (turnY) {
     ball.y += ballV.y
   } else if (!turnY) {
@@ -62,19 +57,19 @@ const draw = () => {
       positionY = cell.dataset.key.slice(2, 3);
 
       if (positionX === ball.x.toString() && positionY === ball.y.toString()) {
-        cell.classList.toggle('active');
+        cell.classList.toggle('ball');
 
       };
 
       Array.from(paddlePlayer1.y).forEach((item) => {
         if (item.toString() === positionY && paddlePlayer1.x.toString() === positionX) {
-          cell.classList.toggle('active')
+          cell.classList.toggle('paddle')
 
         }
       })
       Array.from(paddlePlayer2.y).forEach((item) => {
         if (item.toString() === positionY && paddlePlayer2.x.toString() === positionX) {
-          cell.classList.toggle('active')
+          cell.classList.toggle('paddle')
 
         }
       })
@@ -93,7 +88,7 @@ const draw = () => {
       })
 
 
-      if (ball.y === 8) {
+      if (ball.y === 9) {
         turnY = !turnY;
       } else if (ball.y === 0) {
         turnY = !turnY;
