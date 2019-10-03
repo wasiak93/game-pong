@@ -141,8 +141,8 @@ const startInterval = () => {
   indexDraw = setInterval(draw, time);
   indexBallMove = setInterval(ballMove, time);
   ball = {
-    x: 4,
-    y: 5
+    x: Math.floor(cellNumberColumns / 2),
+    y: Math.floor(cellNumberRows / 2)
   }
 }
 
