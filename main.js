@@ -1,7 +1,9 @@
 const start = document.querySelector('.start');
 const board = document.querySelector('.board');
 const cellWidth = 40;
-const cellHeight = 32;
+const cellHeight = 40;
+const cellNumberColumns = 15;
+const cellNumberRows = 10;
 let positionX = "";
 let positionY = "";
 let ball = {
@@ -19,7 +21,7 @@ const paddlePlayer1 = {
   y: [3, 4, 5]
 }
 const paddlePlayer2 = {
-  x: 9,
+  x: cellNumberColumns - 1,
   y: [4, 5, 6]
 }
 let tick = "";
@@ -35,6 +37,8 @@ querySelector('.winOne');
 const spanWinTwo = document.
 querySelector('.winTwo');
 
+board.style.width = cellNumberColumns * cellWidth + 'px';
+board.style.height = cellNumberRows * cellHeight + 'px';
 
 
 
@@ -53,10 +57,10 @@ const ballMove = () => {
 
 
 const draw = () => {
-  if (10 > ball.x > -1) {
-    for (let x = 0; x < 10; x++) {
+  if (cellNumberColumns > ball.x > -1) {
+    for (let x = 0; x < cellNumberColumns; x++) {
 
-      for (let y = 0; y < 10; y++) {
+      for (let y = 0; y < cellNumberRows; y++) {
         const cell = document.createElement('div');
         cell.classList.add('cell');
         cell.style.left = cellWidth * x + 'px';
@@ -66,8 +70,9 @@ const draw = () => {
       }
     }
     document.querySelectorAll('.cell').forEach((cell) => {
-      positionX = cell.dataset.key.slice(0, 1);
-      positionY = cell.dataset.key.slice(2, 3);
+      position = cell.dataset.key.split('-');
+      positionX = position[0];
+      positionY = position[1];
 
       if (positionX === ball.x.toString() && positionY === ball.y.toString()) {
         cell.classList.toggle('ball');
@@ -101,7 +106,7 @@ const draw = () => {
       })
 
 
-      if (ball.y === 9) {
+      if (ball.y === cellNumberRows - 1) {
         turnY = !turnY;
       } else if (ball.y === 0) {
         turnY = !turnY;
@@ -118,7 +123,7 @@ const draw = () => {
     clearInterval(indexDraw);
     clearInterval(indexTick);
 
-  } else if (ball.x > 10) {
+  } else if (ball.x > cellNumberColumns) {
     numberWinOne++;
     spanWinOne.textContent = numberWinOne;
     alert('wygrał gracz numer 1');

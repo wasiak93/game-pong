@@ -1,7 +1,7 @@
 /* ustawic zeby pilka nie zmniejszala borderow w kwadracie */
 
 * {
-  box-sizing: border-box;
+  /* box-sizing: border-box; */
   margin: 0;
   padding: 0;
 }
@@ -49,16 +49,14 @@ p {
   position: absolute;
   top: 10px;
   left: 200px;
-  height: 320px;
-  width: 400px;
-  border: 1px solid black;
+  border: 3px solid black;
 }
 
 .cell {
-  height: 32px;
+  height: 40px;
   width: 40px;
   position: absolute;
-  border: solid black 1px;
+  /* border: solid black 1px; */
   background-color: white;
 }
 
