@@ -1,9 +1,9 @@
 const start = document.querySelector('.start');
 const board = document.querySelector('.board');
-const cellWidth = 40;
-const cellHeight = 40;
-const cellNumberColumns = 15;
-const cellNumberRows = 10;
+const cellWidth = 20;
+const cellHeight = 20;
+const cellNumberColumns = 30;
+const cellNumberRows = 20;
 let positionX = "";
 let positionY = "";
 let ball = {
@@ -18,17 +18,17 @@ turnY = true;
 turnX = true;
 const paddlePlayer1 = {
   x: 0,
-  y: [3, 4, 5]
+  y: [3, 4, 5, 6, 7]
 }
 const paddlePlayer2 = {
   x: cellNumberColumns - 1,
-  y: [4, 5, 6]
+  y: [4, 5, 6, 7, 8]
 }
 let tick = "";
 let indexTick = "";
 let indexDraw = "";
 let indexBallMove = "";
-const time = 500;
+const time = 200;
 
 let numberWinOne = 0;
 let numberWinTwo = 0;
@@ -154,9 +154,9 @@ const move = (e) => {
   // 38 - "strzalka w gore"
   // 40 - "strzalka w dol"
   if (e.keyCode === 83) {
-    if (paddlePlayer1.y[2] === 9) return;
+    if (paddlePlayer1.y[4] === cellNumberRows - 1) return;
     let yFirstPaddlePlayer = paddlePlayer1.y.shift();
-    yFirstPaddlePlayer += 3;
+    yFirstPaddlePlayer += paddlePlayer1.y.length + 1;
     paddlePlayer1.y.push(yFirstPaddlePlayer)
 
 
@@ -164,21 +164,21 @@ const move = (e) => {
   if (e.keyCode === 87) {
     if (paddlePlayer1.y[0] === 0) return;
     let yLastPaddlePlayer = paddlePlayer1.y.pop();
-    yLastPaddlePlayer -= 3;
+    yLastPaddlePlayer -= paddlePlayer1.y.length + 1;
     paddlePlayer1.y.unshift(yLastPaddlePlayer)
 
   }
   if (e.keyCode === 38) {
     if (paddlePlayer2.y[0] === 0) return;
     let yLastPaddlePlayer = paddlePlayer2.y.pop();
-    yLastPaddlePlayer -= 3;
+    yLastPaddlePlayer -= paddlePlayer2.y.length + 1;
     paddlePlayer2.y.unshift(yLastPaddlePlayer)
   }
 
   if (e.keyCode === 40) {
-    if (paddlePlayer2.y[2] === 9) return;
+    if (paddlePlayer2.y[4] === cellNumberRows - 1) return;
     let yFirstPaddlePlayer = paddlePlayer2.y.shift();
-    yFirstPaddlePlayer += 3;
+    yFirstPaddlePlayer += paddlePlayer2.y.length + 1;
     paddlePlayer2.y.push(yFirstPaddlePlayer)
   }
 
