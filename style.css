@@ -1,7 +1,4 @@
-/* ustawic zeby pilka nie zmniejszala borderow w kwadracie */
-
 * {
-  /* box-sizing: border-box; */
   margin: 0;
   padding: 0;
 }
@@ -62,7 +59,6 @@ p {
   height: 20px;
   width: 20px;
   position: absolute;
-  /* border: solid black 1px; */
   background-color: white;
 }
 

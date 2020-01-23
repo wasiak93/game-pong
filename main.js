@@ -149,10 +149,7 @@ const startInterval = () => {
 
 
 const move = (e) => {
-  // 87 - "w"
-  // 83 - "s"
-  // 38 - "strzalka w gore"
-  // 40 - "strzalka w dol"
+
   if (e.keyCode === 83) {
     if (paddlePlayer1.y[4] === cellNumberRows - 1) return;
     let yFirstPaddlePlayer = paddlePlayer1.y.shift();
