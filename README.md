@@ -1,4 +1,4 @@
-# game pong
+# Game Pong
 
 My first only desktop game made in vanilla JS, enjoy!
 
